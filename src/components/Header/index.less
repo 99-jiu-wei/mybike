@@ -1,0 +1,87 @@
+@import './../../style/default.less';
+
+.header {
+    background-color: @colorM;
+    width: 100%;
+
+    .header-top {
+        height: 60px;
+        line-height: 60px;
+        padding: 0 20px;
+        text-align: right;
+
+        .logo {
+            height: 60px;
+            text-align: left;
+            font-size: 18px;
+
+            img {
+                height: 40px;
+                line-height: 60px;
+                vertical-align: middle;
+                padding-right: 15px;
+            }
+
+        }
+
+        a {
+            margin-left: 40px;
+        }
+    }
+
+    .breadcrumb {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        border-top: 1px solid #f9c700;
+
+        .breadcrumb-title {
+            text-align: center;
+            font-size: @fontC;
+
+            &:after {
+                position: absolute;
+                content: "";
+                left: 91px;
+                top: 39px;
+                border-top: 9px solid @colorM;
+                border-left: 12px solid transparent;
+                border-right: 12px solid transparent;
+            }
+        }
+
+        .weather {
+            text-align: right;
+            font-size: 14px;
+
+            .data {
+                margin-right: 10px;
+                vertical-align: middle;
+            }
+
+            .weather-img {
+                img {
+                    height: 15px;
+                    vertical-align: middle;
+                }
+            }
+
+            .weather-temp {
+                margin: 0 5px;
+                vertical-align: middle;
+            }
+
+            .weather-text {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.simple-page {
+
+    .header-top {
+        background-color: #1890ff;
+        color: @colorM;
+    }
+}
