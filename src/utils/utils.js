@@ -28,6 +28,7 @@ export const utils = {
         let options = [];
         data.map((item, index) => {
             options.push(<Option value={index} key={item.key}>{item.name}</Option>)
+            return item;
         })
         return options;
 

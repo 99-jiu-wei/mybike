@@ -6,17 +6,21 @@ import { utils } from '../../utils/utils'
 import "./../ui/ui.less"
 import "./../../style/common.less"
 import BaseForm from '../../components/BaseForm'
+import ETable from '../../components/ETable'
 const FormItem = Form.Item;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
+
 
 const Order = () => {
     const [list, setList] = useState([]);
     const [pagination, setPagination] = useState()
     const [orderConfirmVisible, setOrderConfirmVisible] = useState(false)
     const [orderInfo, setOrderInfo] = useState({})
-    const [selectedRowKeys, setSelectedRowKeys] = useState([])
-    const [selectedItem, setSelectedItem] = useState()
+    // const [selectedRowKeys, setSelectedRowKeys] = useState([])
+    const [selectedItem, setSelectedItem] = useState([])
+    const [selectedIds, setSelectedIds] = useState([])
+    let selected = { selectedItem, selectedIds }
     let param = {
         page: 1
     }
@@ -169,11 +173,11 @@ const Order = () => {
             }
         })
     }
-    const onRowClick = (record, index) => {
-        let selectKey = [index];
-        setSelectedRowKeys(selectKey);
-        setSelectedItem(record)
-    }
+    // const onRowClick = (record, index) => {
+    //     let selectKey = [index];
+    //     setSelectedRowKeys(selectKey);
+    //     setSelectedItem(record)
+    // }
     const openOrderDetail = () => {
         let item = selectedItem;
         if (!item) {
@@ -186,6 +190,10 @@ const Order = () => {
         window.open(`/common/order/detail/${item.id}`, "_blank")
         // props.history.push(`/common/order/detail/${item.id}`)
     }
+    // const onSelectChange = (selectedRowKeys) => {
+    //     setSelectedRowKeys(selectedRowKeys)
+
+    // }
     return (
         <>
             <Card className='card-wrap'>
@@ -196,7 +204,18 @@ const Order = () => {
                 <Button type="primary" style={{ marginLeft: 10 }} onClick={() => { handleConfirm() }}>结束订单</Button>
             </Card>
             <div className='content-wrap'>
-                <Table
+                <ETable
+                    columns={columns}
+                    dataSource={list}
+                    pagination={pagination}
+                    // setSelectedRowKeys={setSelectedRowKeys}
+                    setSelectedItem={setSelectedItem}
+                    {...selected}
+                    // onSelectChange={onSelectChange}
+                    rowSelection={'checkbox'}
+                    setSelectedIds={setSelectedIds}
+                />
+                {/* <Table
                     rowSelection={{ type: "radio", selectedRowKeys }}
                     columns={columns}
                     dataSource={list}
@@ -208,7 +227,7 @@ const Order = () => {
                             }// 点击行
                         };
                     }}
-                />
+                /> */}
             </div>
             <Modal
                 title="结束订单"

@@ -6,7 +6,6 @@ const RequestList = (url, param, setList, setPagination) => {
     var data = {
         param: param
     }
-    var list;
     axios.ajax({
         url,
         data

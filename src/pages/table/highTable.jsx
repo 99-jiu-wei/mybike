@@ -14,7 +14,7 @@ export default class HighTable extends Component {
         this.request();
     }
     request = () => {
-        let _this = this;
+        // let _this = this;
         axios.ajax({
             url: 'table/high/list',
             data: {
@@ -40,7 +40,7 @@ export default class HighTable extends Component {
         // this.setState({ sortOrder: sorter.order })
     };
     handleDelete = (item) => {
-        let id = item.id;
+        // let id = item.id;
         Modal.confirm({
             title: "确认",
             content: "您确认要删除此条数据吗？",
