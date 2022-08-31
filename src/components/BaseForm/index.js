@@ -47,9 +47,9 @@ const BaseForm = (props) => {
                     </FormItem>
                     FormItemList.push(SELECT)
                 } else if (item.type === 'INPUT') {
-                    console.log("INPUT");
                     const INPUT = <FormItem label={label} name={name} key={index}>
                         <Input style={{ width: width, margin: '0 20px' }}
+                            // initiavalue小写
                             initialvalues={initialvalues}>
                         </Input>
                     </FormItem>

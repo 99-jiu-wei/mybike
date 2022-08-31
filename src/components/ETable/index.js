@@ -25,8 +25,8 @@ export default function ETable(props) {
         const onRowClick = (record, index) => {
             let rowSelection = props.rowSelection;
             let selectedRowKeysCopy = selectedRowKeys;
+            let { selectedIds, selectedItem } = props;
             if (rowSelection === 'checkbox') {
-                let { selectedIds, selectedItem } = props;
                 if (selectedIds) {
                     const i = selectedIds.indexOf(record.id);
                     if (i === -1) {
@@ -36,7 +36,7 @@ export default function ETable(props) {
                     } else {
                         selectedIds.splice(i, 1);
                         // console.log(selectedRowKeys.splice(i, 1));
-                        let selectedRowKeysCopy = selectedRowKeys;
+                        // let selectedRowKeysCopy = selectedRowKeys;
                         selectedRowKeysCopy.splice(i, 1);
                         setSelectedRowKeys([...selectedRowKeysCopy]);
                         selectedItem.splice(i, 1);
@@ -48,8 +48,7 @@ export default function ETable(props) {
                 }
                 // saveDetail(selectedItem, selectedIds, selectedRowKeysCopy);
             } else {
-                let { selectedItem } = props;
-                setSelectedRowKeys([index]);
+                setSelectedRowKeys([index]);//加[]
                 selectedItem = [record];
                 // saveDetail(selectedRowKeys, selectedItem);
             }
@@ -62,7 +61,7 @@ export default function ETable(props) {
         } else {
             row_selection = 'radio';
         }
-        console.log(rowSelection);
+        // console.log(rowSelection);
         return <Table
             {...props}
             bordered
