@@ -2,14 +2,11 @@ import React, { useState, useEffect, Component } from 'react'
 import { Card, Button, Table, Form, Select, Modal, DatePicker, message } from 'antd'
 import axios from '../../axios'
 import RequestList from '../../axios/RequestList'
-import { utils } from '../../utils/utils'
 import "./../ui/ui.less"
 import "./../../style/common.less"
 import BaseForm from '../../components/BaseForm'
 import ETable from '../../components/ETable'
 const FormItem = Form.Item;
-const { Option } = Select;
-const { RangePicker } = DatePicker;
 
 
 const Order = () => {
@@ -74,17 +71,14 @@ const Order = () => {
         {
             title: '订单编号',
             dataIndex: 'order_sn',
-            key: 'order_sn'
         },
         {
             title: '车辆编号',
             dataIndex: 'bick_sn',
-            key: 'bick_sn'
         },
         {
             title: '用户名',
             dataIndex: 'user_name',
-            key: 'user_name'
         },
         {
             title: '里程',
@@ -92,37 +86,30 @@ const Order = () => {
             render(distance) {
                 return distance / 1000 + 'Km'
             },
-            key: 'distance'
         },
         {
             title: '行驶时长',
             dataIndex: 'total_time',
-            key: 'total_time'
         },
         {
             title: '状态',
             dataIndex: 'status',
-            key: 'status'
         },
         {
             title: '开始时间',
             dataIndex: 'start_time',
-            key: 'start_time'
         },
         {
             title: '结束时间',
             dataIndex: 'end_time',
-            key: 'end_time'
         },
         {
             title: '订单金额',
             dataIndex: 'total_fee',
-            key: 'total_fee'
         },
         {
             title: '实付金额',
             dataIndex: 'user_pay',
-            key: 'user_pay'
         }
     ]
     const formItemLayout = {

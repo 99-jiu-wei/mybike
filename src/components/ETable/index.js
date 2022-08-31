@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Table } from 'antd';
 
 export default function ETable(props) {
-    const [selectedRowKeys, setSelectedRowKeys] = useState([])
+    let [selectedRowKeys, setSelectedRowKeys] = useState([])
     const tableInit = () => {
         // let { onSelectChange } = props;
         let row_selection = props.rowSelection;
@@ -10,41 +10,48 @@ export default function ETable(props) {
             type: "radio",
             selectedRowKeys,
         }
-        const saveDetail = (selectedItem, selectedIds) => {
-            if (selectedIds) {
-                console.log(selectedItem, selectedIds);
-                props.setSelectedItem(selectedItem);
-                props.setSelectedIds(selectedIds);
+        // const saveDetail = (selectedItem, selectedIds, selectedRowKeysCopy) => {
+        //     if (selectedIds) {
+        //         console.log(selectedItem, selectedIds, selectedRowKeysCopy);
+        //         setSelectedRowKeys(selectedRowKeysCopy);
+        //         props.setSelectedItem(selectedItem);
+        //         props.setSelectedIds(selectedIds);
 
-            } else {
-                props.setSelectedItem(selectedItem);
-            }
-        }
+        //     } else {
+        //         setSelectedRowKeys(selectedRowKeysCopy);
+        //         props.setSelectedItem(selectedItem);
+        //     }
+        // }
         const onRowClick = (record, index) => {
             let rowSelection = props.rowSelection;
+            let selectedRowKeysCopy = selectedRowKeys;
             if (rowSelection === 'checkbox') {
                 let { selectedIds, selectedItem } = props;
                 if (selectedIds) {
                     const i = selectedIds.indexOf(record.id);
                     if (i === -1) {
                         selectedIds.push(record.id);
-                        setSelectedRowKeys([index, ...selectedRowKeys]);
+                        setSelectedRowKeys([...selectedRowKeys, index]);
                         selectedItem.push(record);
                     } else {
                         selectedIds.splice(i, 1);
-                        setSelectedRowKeys(selectedRowKeys.splice(i, 1))
+                        // console.log(selectedRowKeys.splice(i, 1));
+                        let selectedRowKeysCopy = selectedRowKeys;
+                        selectedRowKeysCopy.splice(i, 1);
+                        setSelectedRowKeys([...selectedRowKeysCopy]);
                         selectedItem.splice(i, 1);
                     }
                 } else {
                     selectedIds = [record.id];//存id
-                    setSelectedRowKeys(index);//存下标
+                    selectedRowKeysCopy = [index];//存下标
                     selectedItem = [record];//存每条的信息
                 }
-                saveDetail(selectedItem, selectedIds);
+                // saveDetail(selectedItem, selectedIds, selectedRowKeysCopy);
             } else {
-                setSelectedRowKeys(index);
-                let selectedItem = [record];
-                saveDetail(selectedRowKeys, selectedItem);
+                let { selectedItem } = props;
+                setSelectedRowKeys([index]);
+                selectedItem = [record];
+                // saveDetail(selectedRowKeys, selectedItem);
             }
 
         }

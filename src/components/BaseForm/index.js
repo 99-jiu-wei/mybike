@@ -27,7 +27,7 @@ const BaseForm = (props) => {
         const FormItemList = [];
         if (formList && formList.length > 0) {
             formList.forEach((item, index) => {
-                let { label, name, placeholder, width } = item;
+                let { label, name, placeholder, width, initialvalues } = item;
                 if (item.type === '时间查询') {
                     const begin_time = <FormItem label="订单时间" name={name} key={100}>
                         <DatePicker showTime={true} format="YYYY-MM-DD HH:mm:ss" />
@@ -50,8 +50,7 @@ const BaseForm = (props) => {
                     console.log("INPUT");
                     const INPUT = <FormItem label={label} name={name} key={index}>
                         <Input style={{ width: width, margin: '0 20px' }}
-                            palceholder={placeholder}>
-                            {utils.getOptionList(item.list)}
+                            initialvalues={initialvalues}>
                         </Input>
                     </FormItem>
                     FormItemList.push(INPUT)
@@ -60,6 +59,11 @@ const BaseForm = (props) => {
                         <Checkbox>{label}</Checkbox>
                     </FormItem>
                     FormItemList.push(CHECKBOX)
+                } else if (item.type === 'DATAPICKER') {
+                    const DATAPICKER = <FormItem label={label} name={name} key={index}>
+                        <DatePicker showTime={true} format="YYYY-MM-DD HH:mm:ss" />
+                    </FormItem>
+                    FormItemList.push(DATAPICKER)
                 }
 
             })
