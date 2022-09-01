@@ -25,7 +25,7 @@ export default function ETable(props) {
         const onRowClick = (record, index) => {
             let rowSelection = props.rowSelection;
             let selectedRowKeysCopy = selectedRowKeys;
-            let { selectedIds, selectedItem } = props;
+            let { selectedIds, selectedItem, setSelectedItem } = props;
             if (rowSelection === 'checkbox') {
                 if (selectedIds) {
                     const i = selectedIds.indexOf(record.id);
@@ -49,7 +49,7 @@ export default function ETable(props) {
                 // saveDetail(selectedItem, selectedIds, selectedRowKeysCopy);
             } else {
                 setSelectedRowKeys([index]);//加[]
-                selectedItem = [record];
+                setSelectedItem(record);
                 // saveDetail(selectedRowKeys, selectedItem);
             }
 

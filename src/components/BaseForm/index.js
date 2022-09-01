@@ -50,7 +50,7 @@ const BaseForm = (props) => {
                     const INPUT = <FormItem label={label} name={name} key={index}>
                         <Input style={{ width: width, margin: '0 20px' }}
                             // initiavalue小写
-                            initialvalues={initialvalues}>
+                            placeholder={placeholder}>
                         </Input>
                     </FormItem>
                     FormItemList.push(INPUT)
